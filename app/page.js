@@ -146,7 +146,7 @@ export default function Home() {
           </h1>
           <p className={styles.heroSub}>
             Shop Zara, Mango, H&amp;M, ASOS and 40+ brands all in one place.
-            Save items, mix looks, and check out once — with one delivery.
+            Save items, mix looks, and check out.
           </p>
           <div className={styles.heroPills}>
             <span className={`${styles.pill} ${styles.pillBlush}`}>
