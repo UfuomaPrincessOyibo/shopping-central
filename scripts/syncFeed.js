@@ -10,15 +10,15 @@ const supabase = createClient(
   {
     auth: {
       autoRefreshToken: false,
-      persistSession: false
-    }
-  }
-)
+      persistSession: false,
+    },
+  },
+);
 
 // Add each approved brand feed URL here as you get approved
 const FEEDS = [
   { brand: "Ego", url: process.env.AWIN_FEED_EGO },
-  // { brand: 'Brand2', url: process.env.AWIN_FEED_BRAND2 },
+  { brand: 'GODDIVA', url: process.env.AWIN_FEED_GODDIVA },
   // { brand: 'ASOS', url: process.env.AWIN_FEED_ASOS },  ← uncomment as you get approved
 ];
 
@@ -99,8 +99,9 @@ function parseFeed(csv, brand) {
           row["search_price"] || row["price"] || row["rrp"] || 0,
         ),
         currency: "GBP",
-        image_url:
-          row["aw_image_url"] || row["image_url"] || row["merchant_image_url"],
+        image_url: row["merchant_image_url"] || row["aw_image_url"], // ← prefer merchant image
+        aw_image_url: row["aw_image_url"],
+        merchant_image_url: row["merchant_image_url"],
         product_url:
           row["aw_deep_link"] || row["deep_link"] || row["product_url"],
         category:
